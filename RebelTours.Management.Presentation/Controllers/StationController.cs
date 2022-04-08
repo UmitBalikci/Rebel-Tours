@@ -34,6 +34,8 @@ namespace RebelTours.Management.Presentation.Controllers
         }
         public IActionResult Create()
         {
+            var cities = _cityService.GetAll();
+            ViewBag.CityList = new SelectList(cities, "Id", "Name");
             return View();
         }
         [HttpPost]
