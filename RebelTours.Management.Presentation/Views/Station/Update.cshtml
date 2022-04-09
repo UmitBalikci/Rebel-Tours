@@ -3,24 +3,27 @@
 <div class="row">
     <div class="col-12 col-md-8">
         <form method="post">
-            <label class="form-label" for="Name">Station Name</label>
-            <input type="text" name="Name" class="form-control mb-3" value="@Model.Name" />
-            <label class="form-label" for="CityName">City Name</label>
-            @*<input type="number" name="cityıd" class="form-control mb-3" value=@model.cityıd />*@
+            <div>
+                <label class="form-label" for="Name">Station Name</label>
+                <input type="text" name="Name" class="form-control mb-3" value="@Model.Name" />
+            </div>
+            <div>
+                <label class="form-label" for="CityId">City Name</label>
+                @*<input type="number" name="cityıd" class="form-control mb-3" value=@model.cityıd />*@
 
-            @if (ViewBag.CityList != null)
-            {
-                <select asp-for="CityId" asp-items="ViewBag.CityList" class="form-select" name="CityId">
-                    @*
-                    Manuel olarak aşağıdaki gibi yapabiliriz..    
-                    *@
-                    @*@foreach (var city in ViewBag.CityList)
-                    {
-                        <option value="@city.Id">@city.Name</option>
-                    }*@
-                </select>
-            }
-            <br />
+                @if (ViewBag.CityList != null)
+                {
+                    <select asp-for="CityId" asp-items="ViewBag.CityList" class="form-control" name="CityId" aria-label="Default select example">
+                        @*
+                            Manuel olarak aşağıdaki gibi yapabiliriz..
+                        *@
+                        @*@foreach (var city in ViewBag.CityList)
+                            {
+                            <option value="@city.Id">@city.Name</option>
+                            }*@
+                    </select>
+                }
+            </div>
             <button class="btn btn-success" type="submit">Update</button>
         </form>
     </div>

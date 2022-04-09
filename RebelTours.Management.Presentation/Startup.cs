@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RebelTours.Management.Application.BusManufacturers;
+using RebelTours.Management.Application.BusModels;
 using RebelTours.Management.Application.Cities;
 using RebelTours.Management.Application.Repositories;
 using RebelTours.Management.Application.Stations;
@@ -29,8 +31,15 @@ namespace RebelTours.Management.Presentation
             services.AddControllersWithViews();
             services.AddTransient<ICityService, CityService>();
             services.AddTransient<ICityRepository, CityRepository>();
+
             services.AddTransient<IStationService, StationService>();
             services.AddTransient<IStationRepository, StationRepository>();
+
+            services.AddTransient<IBusModelService, BusModelService>();
+            services.AddTransient<IBusModelRepository, BusModelRepository>();
+
+            services.AddTransient<IBusManufacturerService, BusManufacturerService>();
+            services.AddTransient<IBusManufacturerRepository, BusManufacturerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

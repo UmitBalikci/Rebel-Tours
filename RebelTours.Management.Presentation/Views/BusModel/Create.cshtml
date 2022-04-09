@@ -1,0 +1,45 @@
+﻿@model BusModelDTO
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="row mb-3">
+        <div class="col-12 col-md-8">
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-6">
+        <form method="post" class="form-check">
+            <div class="mb-3">
+                <label class="form-label" for="Name">Bus Model Name</label>
+                <input asp-for="Name" class="form-control" type="text" name="Name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="BusManufacturerId">BusManufacturer Name</label>
+                <select asp-for="BusManufacturerId" class="form-control" asp-items="ViewBag.BusManufacturerList" name="BusManufacturerId">
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Type">Bus Type</label>
+                <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<BusType>()">
+
+                    @*<option value="0">@BusType.None</option>
+                    <option value="1">@BusType.Shuttle</option>
+                    <option value="2">@BusType.Coach</option>*@
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="SeatCapacity">Seat Capacity</label>
+                <input asp-for="SeatCapacity" class="form-control" type="number" name="SeatCapacity" />
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="HasToilet" class="form-check-input" type="checkbox" name="HasToilet" checked/>
+                <label class="form-check-label" for="HasToilet">Has Toilet</label>
+            </div>
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+</div>

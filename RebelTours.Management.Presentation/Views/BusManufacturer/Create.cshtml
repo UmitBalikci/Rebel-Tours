@@ -1,0 +1,22 @@
+﻿@if (ViewBag.ErrorMessage != null)
+{
+    <div class="row mb-3">
+        <div class="col-12 col-md-8">
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-6">
+        <form method="post" class="form-check">
+            <div>
+                <label class="form-label" asp-for"Name">Bus Manufacturer Name</label>
+                <input class="form-control" type="text" name="Name" />
+            </div>
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+</div>

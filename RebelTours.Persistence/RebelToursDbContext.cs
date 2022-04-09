@@ -11,14 +11,18 @@ namespace RebelTours.Persistence
 {
     public class RebelToursDbContext : DbContext
     {
-        private string connectionString = "Server=DESKTOP-MTU4EKB\\SQLEXPRESS; Database=RebelToursDb; Integrated Security=true;" ;
+        private string connectionString = "Server=UMITFISHER; Database=RebelToursDb; Integrated Security=true;";
         public DbSet<City> Cities { get; set; }
         public DbSet<Station> Stations { get; set; }
+        public DbSet<BusModel> BusModels { get; set; }
+        public DbSet<BusManufacturer> BusManufacturers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new StationConfiguration());
+            modelBuilder.ApplyConfiguration(new BusManufacturerConfiguration());
+            modelBuilder.ApplyConfiguration(new BusModelConfiguration());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

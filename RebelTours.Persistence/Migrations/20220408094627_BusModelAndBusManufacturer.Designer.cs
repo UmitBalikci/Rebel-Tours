@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RebelTours.Persistence;
 
 namespace RebelTours.Persistence.Migrations
 {
     [DbContext(typeof(RebelToursDbContext))]
-    partial class RebelToursDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408094627_BusModelAndBusManufacturer")]
+    partial class BusModelAndBusManufacturer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BusModelDTO>
+
+
+<div class="row">
+    <div class="col-12 col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Bus Manufacturer Name</th>
+                    <th>Type</th>
+                    <th>Seat Capacity</th>
+                    <th>Has Toilet</th>
+                    <th>
+                        <a class="btn btn-success" asp-action="Create">New Bus Model</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var busModel in Model)
+                {
+                    <tr>
+                        <td>@busModel.Id</td>
+                        <td>@busModel.Name</td>
+                        <td>
+                            @((ViewBag.BusManufacturers as IEnumerable<BusManufacturerDTO>).SingleOrDefault(bm => bm.Id == busModel.BusManufacturerId).Name)
+                        </td>
+                        <td>@busModel.Type</td>
+                        <td>@busModel.SeatCapacity</td>
+                        <td>@busModel.HasToilet</td>
+                        <td>
+                            <a class="btn btn-primary" asp-route-id=@busModel.Id asp-action="Update">Update</a>
+                            <a class="btn btn-danger" asp-route-id=@busModel.Id asp-action="Delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div> 

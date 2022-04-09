@@ -10,7 +10,7 @@
 
             @if (ViewBag.CityList != null)
             {
-                <select asp-items="ViewBag.CityList" class="form-select" name="CityId">
+                <select asp-items="ViewBag.CityList" class="form-control" name="CityId">
                     @*
                 Manuel olarak aşağıdaki gibi yapabiliriz..
                     *@
@@ -20,7 +20,7 @@
                 }*@
                 </select>
             }
-
+            <br />
             <button class="btn btn-success mt-3" type="submit">Save</button>
         </form>
     </div>

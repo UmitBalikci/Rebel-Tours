@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BusManufacturerDTO>
+
+<div class="row">
+    <div class="col-12 col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>
+                        <a class="btn btn-success" asp-action="Create">New BusManufacturer</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var busManufacturer in Model)
+                {
+                    <tr>
+                        <td>@busManufacturer.Id</td>
+                        <td>@busManufacturer.Name</td>
+                        <td>
+                            <a class="btn btn-primary" asp-route-id=@busManufacturer.Id asp-action="Update">Update</a>
+                            <a class="btn btn-danger" asp-route-id=@busManufacturer.Id asp-action="Delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div> 
