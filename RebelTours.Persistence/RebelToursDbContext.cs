@@ -16,6 +16,8 @@ namespace RebelTours.Persistence
         public DbSet<Station> Stations { get; set; }
         public DbSet<BusModel> BusModels { get; set; }
         public DbSet<BusManufacturer> BusManufacturers { get; set; }
+        
+        // OnModelCreating ve OnConfiguring metotlarını override ettik
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
