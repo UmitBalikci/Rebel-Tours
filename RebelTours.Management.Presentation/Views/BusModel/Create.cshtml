@@ -15,7 +15,7 @@
         <form method="post" class="form-check">
             <div class="mb-3">
                 <label class="form-label" for="Name">Bus Model Name</label>
-                <input asp-for="Name" class="form-control" type="text" name="Name" />
+                <input asp-for="Name" class="form-control" type="text" name="Name" required />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="BusManufacturerId">BusManufacturer Name</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" asp-for="Type">Bus Type</label>
-                <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<BusType>()">
+                <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<BusType>()" required>
 
                     @*<option value="0">@BusType.None</option>
                     <option value="1">@BusType.Shuttle</option>
@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="SeatCapacity">Seat Capacity</label>
-                <input asp-for="SeatCapacity" class="form-control" type="number" name="SeatCapacity" />
+                <input asp-for="SeatCapacity" class="form-control" type="number" name="SeatCapacity" required />
             </div>
             <div class="form-check mb-3">
                 <input asp-for="HasToilet" class="form-check-input" type="checkbox" name="HasToilet" checked/>

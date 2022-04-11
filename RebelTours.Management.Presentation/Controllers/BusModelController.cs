@@ -56,7 +56,7 @@ namespace RebelTours.Management.Presentation.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "ALanlar boş olamaz";
+                ViewBag.ErrorMessage = "Alanlar boş olamaz";
                 return View();
             }
         }

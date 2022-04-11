@@ -15,7 +15,7 @@
         <form method="post" class="form-check">
             <div class="mb-3">
                 <label class="form-label" for="Name">Bus Model Name</label>
-                <input asp-for="Name" class="form-control" type="text" name="Name" value="@Model.Name" />
+                <input asp-for="Name" class="form-control" type="text" name="Name" value="@Model.Name" required />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="BusManufacturerId">BusManufacturer Name</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="SeatCapacity">Seat Capacity</label>
-                <input asp-for="SeatCapacity" class="form-control" type="number" name="SeatCapacity" value="@Model.SeatCapacity" />
+                <input asp-for="SeatCapacity" class="form-control" type="number" name="SeatCapacity" value="@Model.SeatCapacity" required />
             </div>
             <div class="form-check mb-3">
                 <input asp-for="HasToilet" class="form-check-input" type="checkbox" name="HasToilet" checked/>

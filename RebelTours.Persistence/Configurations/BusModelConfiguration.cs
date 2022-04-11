@@ -20,6 +20,7 @@ namespace RebelTours.Persistence.Configurations
             builder.HasOne(b => b.BusManufacturer)
                 .WithMany()
                 .HasForeignKey(b => b.BusManufacturerId);
+
             builder.Property(b => b.Type)
                 .IsRequired();
                 
