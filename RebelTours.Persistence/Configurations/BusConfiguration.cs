@@ -22,13 +22,19 @@ namespace RebelTours.Persistence.Configurations
                 .HasColumnType("varchar(50)");
 
             builder.Property(bu => bu.Year)
-                .HasColumnType("int");
+                .HasColumnType("smallint");
             builder.Property(bu => bu.SeatMapping)
                 .IsRequired();
-            builder.Property(bu => bu.SeatCount)
-                .HasColumnType("int");
+
             builder.Property(bu => bu.DistanceTraveled)
                 .HasColumnType("int");
+
+            builder.HasData(
+                new Bus(1, 1, "34RTE61",2002, SeatingType.Standard,500),
+                new Bus(2, 2, "34BTN25",2001, SeatingType.Standard,500),
+                new Bus(3, 3, "34CZN53",1999, SeatingType.Standard,500),
+                new Bus(4, 4, "34ASD98",1994, SeatingType.Standard,500),
+                new Bus(5, 5, "34NSR54",1998, SeatingType.Standard,500));
         }
     }
 }
