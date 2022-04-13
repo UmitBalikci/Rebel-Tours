@@ -1,0 +1,19 @@
+﻿@model BusDTO
+<div class="row">
+    <div class="col-12 col-sm-8 col-md-6">
+        <form method="post" class="form-check">
+            
+            <div class="mb-3">
+                <label class="form-label" asp-for="SeatMapping">Seat Mapping</label>
+                <select asp-for="SeatMapping" class="form-control" asp-items="Html.GetEnumSelectList<SeatingType>()" required>
+                </select>
+            </div>
+            <div class="form-check mb-3">
+                <label class="form-check-label" asp-for="DistanceTraveled">Distance Traveled</label>
+                <input asp-for="DistanceTraveled" class="form-control" type="text" required />
+
+            </div>
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+</div>
