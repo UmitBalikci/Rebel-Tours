@@ -23,9 +23,9 @@ namespace RebelTours.Management.Application.Cities
     {
         CityDTO GetById(int id);
         IEnumerable<CityDTO> GetAll();
-        void Create(CityDTO city);
-        void Update(CityDTO city);
-        void Delete(CityDTO city);
+        CommandResult Create(CityDTO city);
+        CommandResult Update(CityDTO city);
+        CommandResult Delete(CityDTO city);
 
     }
 }

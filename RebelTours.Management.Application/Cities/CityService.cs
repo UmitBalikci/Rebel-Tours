@@ -15,27 +15,45 @@ namespace RebelTours.Management.Application.Cities
         {
             _cityRepository = cityRepository;
         }
-        public void Create(CityDTO cityDTO)
+        public CommandResult Create(CityDTO cityDTO)
         {
-            // Mapping
-            var city = new City()
+            try
             {
-                Id = cityDTO.Id,
-                Name = cityDTO.Name
-            };
-            _cityRepository.Create(city);
-        }
-
-        public void Delete(CityDTO cityDTO)
-        {
-            if (cityDTO != null)
-            {
+                // Mapping
                 var city = new City()
                 {
                     Id = cityDTO.Id,
                     Name = cityDTO.Name
                 };
-                _cityRepository.Delete(city);
+                _cityRepository.Create(city);
+
+                return CommandResult.Success();
+            }
+            catch (Exception ex)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+        }
+
+        public CommandResult Delete(CityDTO cityDTO)
+        {
+            try
+            {
+                if (cityDTO != null)
+                {
+                    var city = new City()
+                    {
+                        Id = cityDTO.Id,
+                        Name = cityDTO.Name
+                    };
+                    _cityRepository.Delete(city);
+                }
+                return CommandResult.Success();
+            }
+            catch (Exception ex)
+            {
+
+                return CommandResult.Error(ex.Message);
             }
         }
 
@@ -73,17 +91,22 @@ namespace RebelTours.Management.Application.Cities
             }
         }
 
-        public void Update(CityDTO cityDTO)
+        public CommandResult Update(CityDTO cityDTO)
         {
-            var city = _cityRepository.GetById(cityDTO.Id);
-            //city.Id = cityDTO.Id;
-            city.Name = cityDTO.Name;
-            //new City()
-            //{
-            //    Id = cityDTO.Id,
-            //    Name = cityDTO.Name != null ? cityDTO.Name : default
-            //};
-            _cityRepository.Update(city);
+            try
+            {
+                var city = _cityRepository.GetById(cityDTO.Id);
+                //city.Id = cityDTO.Id;
+                city.Name = cityDTO.Name;
+                _cityRepository.Update(city);
+
+                return CommandResult.Success();
+            }
+            catch (Exception ex)
+            {
+
+                return CommandResult.Error(ex.Message);
+            }
         }
     }
 }

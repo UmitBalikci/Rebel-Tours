@@ -39,14 +39,15 @@ namespace RebelTours.Management.Presentation.Controllers
         [HttpPost]
         public IActionResult Create(CityDTO city)
         {
-            if (city.Name != null)
+
+            var result = _cityService.Create(city);
+            if (result.IsSucceeded)
             {
-                _cityService.Create(city);
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.ErrorMessage = "Boş gönderemezsiniz!!";
+                ViewBag.CommandResult = result;
                 return View();
             }
         }
