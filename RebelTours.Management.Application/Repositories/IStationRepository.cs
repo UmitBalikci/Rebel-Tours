@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace RebelTours.Management.Application.Repositories
 {
-    public interface IStationRepository
+    public interface IStationRepository : IRepository<Station>
     {
-        IEnumerable<Station> GetAll();
-        Station GetById(int id);
-        void Create(Station station);
-        void Update(Station station);
-        void Delete(Station station);
+        //IEnumerable<Station> GetAll();
+        //Station GetById(int id);
+        //void Create(Station station);
+        //void Update(Station station);
+        //void Delete(Station station);
     }
 }

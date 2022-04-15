@@ -54,6 +54,7 @@ namespace RebelTours.Management.Application.Buses
                     RegistrationPlate = bus.RegistrationPlate,
                     Year = bus.Year,
                     SeatMapping = bus.SeatMapping,
+                    SeatCount = bus.SeatCount,
                     DistanceTraveled = bus.DistanceTraveled
                 });
             }
@@ -72,6 +73,7 @@ namespace RebelTours.Management.Application.Buses
                     RegistrationPlate = bus.RegistrationPlate,
                     Year = bus.Year,
                     SeatMapping = bus.SeatMapping,
+                    SeatCount = bus.SeatCount,
                     DistanceTraveled = bus.DistanceTraveled
                 };
                 return busDTO;

@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace RebelTours.Management.Application.Repositories
 {
-    public interface IBusModelRepository
+    public interface IBusModelRepository : IRepository<BusModel>
     {
-        IEnumerable<BusModel> GetAll();
-        BusModel GetById(int id);
-        void Create(BusModel busModel);
-        void Update(BusModel busModel);
-        void Delete(BusModel busModel);
     }
 }

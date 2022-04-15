@@ -32,6 +32,8 @@ namespace RebelTours.Persistence.Configurations
             builder.Property(b => b.HasToilet)
                 .IsRequired();
 
+            builder.Ignore(b => b.SeatTemplate);
+
             builder.HasData(
                 new BusModel(1, "Travego", 1, BusType.Coach, 44, true),
                 new BusModel(2, "Neoplan", 2, BusType.Coach, 44, true),

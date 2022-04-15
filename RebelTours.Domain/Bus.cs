@@ -22,84 +22,91 @@ namespace RebelTours.Domain
         public string RegistrationPlate { get; }
         public short Year { get;}
         public SeatingType SeatMapping { get; set; }
-        public int SeatCount {
-            get 
+        //public int SeatCount {
+        //    get 
+        //    {
+        //        if (BusModel.Type == BusType.Coach)
+        //        {
+        //            if (BusModel.SeatCapacity == 52)
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 52;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 38 : 26;
+        //                }
+
+        //            }
+        //            else if (BusModel.SeatCapacity == 48)
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 48;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 35 : 24;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 44;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 32 : 22;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (BusModel.SeatCapacity == 30)
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 30;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 20 : 15;
+        //                }
+
+        //            }
+        //            else if (BusModel.SeatCapacity == 28)
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 28;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 19 : 14;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (SeatMapping == SeatingType.Standard)
+        //                {
+        //                    return 26;
+        //                }
+        //                else
+        //                {
+        //                    return SeatMapping == SeatingType.Deluxe ? 18 : 13;
+        //                }
+        //            }
+        //        }
+        //    }}
+        public int SeatCount
+        {
+            get
             {
-                if (BusModel.Type == BusType.Coach)
-                {
-                    if (BusModel.SeatCapacity == 52)
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 52;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 38 : 26;
-                        }
-
-                    }
-                    else if (BusModel.SeatCapacity == 48)
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 48;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 35 : 24;
-                        }
-                    }
-                    else
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 44;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 32 : 22;
-                        }
-                    }
-                }
-                else
-                {
-                    if (BusModel.SeatCapacity == 30)
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 30;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 20 : 15;
-                        }
-
-                    }
-                    else if (BusModel.SeatCapacity == 28)
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 28;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 19 : 14;
-                        }
-                    }
-                    else
-                    {
-                        if (SeatMapping == SeatingType.Standard)
-                        {
-                            return 26;
-                        }
-                        else
-                        {
-                            return SeatMapping == SeatingType.Deluxe ? 18 : 13;
-                        }
-                    }
-                }
-            }}
+                return BusModel.SeatTemplate.GetSeatCount(SeatMapping);
+            }
+        }
         public int DistanceTraveled{ get; set; }
 
         public BusModel BusModel { get; set; }

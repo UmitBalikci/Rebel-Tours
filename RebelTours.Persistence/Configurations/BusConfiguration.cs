@@ -15,7 +15,7 @@ namespace RebelTours.Persistence.Configurations
         {
             builder.HasKey(bu => bu.Id);
             builder.HasOne(bu => bu.BusModel)
-                .WithMany()
+                .WithMany(bu => bu.BusList)
                 .HasForeignKey(bu => bu.BusModelId);
 
             builder.Property(bu => bu.RegistrationPlate)
@@ -29,12 +29,14 @@ namespace RebelTours.Persistence.Configurations
             builder.Property(bu => bu.DistanceTraveled)
                 .HasColumnType("int");
 
+            builder.Navigation(bus => bus.BusModel).AutoInclude();
+
             builder.HasData(
-                new Bus(1, 1, "34RTE61",2002, SeatingType.Standard,500),
-                new Bus(2, 2, "34BTN25",2001, SeatingType.Standard,500),
-                new Bus(3, 3, "34CZN53",1999, SeatingType.Standard,500),
-                new Bus(4, 4, "34ASD98",1994, SeatingType.Standard,500),
-                new Bus(5, 5, "34NSR54",1998, SeatingType.Standard,500));
+                new Bus(1, 1, "34RTE61", 2002, SeatingType.Standard, 500),
+                new Bus(2, 2, "34BTN25", 2001, SeatingType.Standard, 500),
+                new Bus(3, 3, "34CZN53", 1999, SeatingType.Standard, 500),
+                new Bus(4, 4, "34ASD98", 1994, SeatingType.Standard, 500),
+                new Bus(5, 5, "34NSR54", 1998, SeatingType.Standard, 500));
         }
     }
 }

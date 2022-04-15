@@ -11,6 +11,7 @@
                     <th>Registration Plate</th>
                     <th>Year</th>
                     <th>SeatMapping</th>
+                    <th>Seat Count</th>
                     <th>DistanceTraveled</th>
                     <th>
                         <a class="btn btn-success" asp-action="Create">New Bus Model</a>
@@ -28,6 +29,7 @@
                         <td>@bus.RegistrationPlate</td>
                         <td>@bus.Year</td>
                         <td>@bus.SeatMapping</td>
+                        <td>@bus.SeatCount</td>
                         <td>@bus.DistanceTraveled</td>
                         <td>
                             <a class="btn btn-primary" asp-route-id=@bus.Id asp-action="Update">Update</a>

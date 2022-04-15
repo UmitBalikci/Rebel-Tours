@@ -13,6 +13,7 @@ namespace RebelTours.Management.Application.Buses
         public string RegistrationPlate { get; set; }
         public short Year { get; set; }
         public SeatingType SeatMapping { get; set; }
+        public int SeatCount { get; set; }
         public int DistanceTraveled { get; set; }
     }
 }
