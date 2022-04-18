@@ -4,7 +4,15 @@
 
     foreach (var item in result.Messages)
     {
-        <div class="alert @(result.IsSucceeded ? "alert-success":"alert-danger")">@item</div>
+        <div class="row mb-3">
+        <div class="col-12 col-md-8">
+            @*<div class="alert alert-danger">
+                @ViewBag.CommandResult
+            </div>*@
+            <div class="alert @(result.IsSucceeded ? "alert-success":"alert-danger")">@item</div>
+        </div>
+    </div>
+        @*<div class="alert @(result.IsSucceeded ? "alert-success":"alert-danger")">@item</div>*@
     }
 
     @*<div class="row mb-3">

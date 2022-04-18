@@ -16,28 +16,49 @@ namespace RebelTours.Management.Application.BusModels
         {
             _busModelRepository = busModelRepository;
         }
-        public void Create(BusModelDTO busModelDTO)
+        public CommandResult Create(BusModelDTO busModelDTO)
         {
-            var busModel = new BusModel(
+            try
+            {
+                var busModel = new BusModel(
                 busModelDTO.Id,
                 busModelDTO.Name,
                 busModelDTO.BusManufacturerId,
                 busModelDTO.Type,
                 busModelDTO.SeatCapacity,
                 busModelDTO.HasToilet);
-            _busModelRepository.Create(busModel);
+                _busModelRepository.Create(busModel);
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+
         }
 
-        public void Delete(BusModelDTO busModelDTO)
+        public CommandResult Delete(BusModelDTO busModelDTO)
         {
-            var busModel = new BusModel(
+            try
+            {
+                // Mapping
+                var busModel = new BusModel(
                 busModelDTO.Id,
                 busModelDTO.Name,
                 busModelDTO.BusManufacturerId,
                 busModelDTO.Type,
                 busModelDTO.SeatCapacity,
                 busModelDTO.HasToilet);
-            _busModelRepository.Delete(busModel);
+                _busModelRepository.Delete(busModel);
+
+                return CommandResult.Success("Silme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Silme işlemi sırasında hata meydana geldi");
+            }
+
         }
 
         public IEnumerable<BusModelDTO> GetAll()
@@ -76,17 +97,27 @@ namespace RebelTours.Management.Application.BusModels
             return busModelDTO;
         }
 
-        public void Update(BusModelDTO busModelDTO)
+        public CommandResult Update(BusModelDTO busModelDTO)
         {
-            var busModel = _busModelRepository.GetById(busModelDTO.Id);
-            busModel = new BusModel(
-                busModelDTO.Id,
-                busModelDTO.Name,
-                busModelDTO.BusManufacturerId,
-                busModelDTO.Type,
-                busModelDTO.SeatCapacity,
-                busModelDTO.HasToilet);
-            _busModelRepository.Update(busModel);
+            try
+            {
+                var busModel = _busModelRepository.GetById(busModelDTO.Id);
+                busModel = new BusModel(
+                    busModelDTO.Id,
+                    busModelDTO.Name,
+                    busModelDTO.BusManufacturerId,
+                    busModelDTO.Type,
+                    busModelDTO.SeatCapacity,
+                    busModelDTO.HasToilet);
+                _busModelRepository.Update(busModel);
+
+                return CommandResult.Success("Güncelleme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Güncelleme sırasında hata meydana geldi");
+            }
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RebelTours.Domain;
+using RebelTours.Management.Application.BaseServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,13 @@ namespace RebelTours.Management.Application.Cities
     // public class CityService : ICityService
     // Yukarıda yazan kodlamadaki sentaks' a interface'ler özelinde miras almak DEĞİL
     // interface 'i IMPLEMENT ETMEK (uyarılmak/kodlamak) denir
-    public interface ICityService
+    public interface ICityService : IService<CityDTO>
     {
-        CityDTO GetById(int id);
-        IEnumerable<CityDTO> GetAll();
-        CommandResult Create(CityDTO city);
-        CommandResult Update(CityDTO city);
-        CommandResult Delete(CityDTO city);
+        //CityDTO GetById(int id);
+        //IEnumerable<CityDTO> GetAll();
+        //CommandResult Create(CityDTO city);
+        //CommandResult Update(CityDTO city);
+        //CommandResult Delete(CityDTO city);
 
     }
 }

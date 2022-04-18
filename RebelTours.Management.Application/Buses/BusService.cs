@@ -16,28 +16,49 @@ namespace RebelTours.Management.Application.Buses
         {
             _busRepository = busRepository;
         }
-        public void Create(BusDTO busDTO)
+        public CommandResult Create(BusDTO busDTO)
         {
-            var bus = new Bus(
+            try
+            {
+                // Mapping
+                var bus = new Bus(
                 busDTO.Id,
                 busDTO.BusModelId,
                 busDTO.RegistrationPlate,
                 busDTO.Year,
                 busDTO.SeatMapping,
                 busDTO.DistanceTraveled);
-            _busRepository.Create(bus);
+                _busRepository.Create(bus);
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+            
         }
 
-        public void Delete(BusDTO busDTO)
+        public CommandResult Delete(BusDTO busDTO)
         {
-            var bus = new Bus(
+            try
+            {
+                var bus = new Bus(
                 busDTO.Id,
                 busDTO.BusModelId,
                 busDTO.RegistrationPlate,
                 busDTO.Year,
                 busDTO.SeatMapping,
                 busDTO.DistanceTraveled);
-            _busRepository.Delete(bus);
+                _busRepository.Delete(bus);
+
+                return CommandResult.Success("Silme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Silme işlemi sırasında hata meydana geldi");
+            }
+            
         }
 
         public IEnumerable<BusDTO> GetAll()
@@ -81,17 +102,27 @@ namespace RebelTours.Management.Application.Buses
             return null;
         }
 
-        public void Update(BusDTO busDTO)
+        public CommandResult Update(BusDTO busDTO)
         {
-            var bus = _busRepository.GetById(busDTO.Id);
-            if (bus != null)
+            try
             {
+                var bus = _busRepository.GetById(busDTO.Id);
+                if (bus != null)
+                {
 
-                bus.Id = busDTO.Id;
-                bus.SeatMapping = busDTO.SeatMapping;
-                bus.DistanceTraveled = busDTO.DistanceTraveled;
-                _busRepository.Update(bus);
+                    bus.Id = busDTO.Id;
+                    bus.SeatMapping = busDTO.SeatMapping;
+                    bus.DistanceTraveled = busDTO.DistanceTraveled;
+                    _busRepository.Update(bus);
+                }
+
+                return CommandResult.Success("Gğncelleme işlemi başarılı");
             }
+            catch (Exception)
+            {
+                return CommandResult.Error("Güncelleme sırasında hata meydana geldi");
+            }
+            
 
         }
     }

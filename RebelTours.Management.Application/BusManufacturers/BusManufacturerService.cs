@@ -15,17 +15,36 @@ namespace RebelTours.Management.Application.BusManufacturers
         {
             _busManufacturerRepository = busManufacturerRepository;
         }
-        public void Create(BusManufacturerDTO busManufacturerDTO)
+        public CommandResult Create(BusManufacturerDTO busManufacturerDTO)
         {
-            var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
+            try
+            {
+                var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
+                _busManufacturerRepository.Create(busManu);
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
             
-            _busManufacturerRepository.Create(busManu);
         }
 
-        public void Delete(BusManufacturerDTO busManufacturerDTO)
+        public CommandResult Delete(BusManufacturerDTO busManufacturerDTO)
         {
-            var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
-            _busManufacturerRepository.Delete(busManu);
+            try
+            {
+                var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
+                _busManufacturerRepository.Delete(busManu);
+
+                return CommandResult.Success("Silme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Silme işlemi sırasında hata meydana geldi");
+            }
+            
         }
 
         public IEnumerable<BusManufacturerDTO> GetAll()
@@ -58,10 +77,20 @@ namespace RebelTours.Management.Application.BusManufacturers
             return null;
         }
 
-        public void Update(BusManufacturerDTO busManufacturerDTO)
+        public CommandResult Update(BusManufacturerDTO busManufacturerDTO)
         {
-            var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
-            _busManufacturerRepository.Update(busManu);
+            try
+            {
+                var busManu = new BusManufacturer(busManufacturerDTO.Id, busManufacturerDTO.Name);
+                _busManufacturerRepository.Update(busManu);
+
+                return CommandResult.Success("Güncelleme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Güncelleme sırasında hata meydana geldi");
+            }
+            
         }
     }
 }

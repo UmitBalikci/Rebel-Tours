@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RebelTours.Management.Application.Repositories
+namespace RebelTours.Management.Application.BaseRepositories
 {
     // Generic 
     // Hangi başka bir tip için bu interface oluşturulacaksa o bahsettiğimiz "başka tip" i
     // generic tip olarak ( tip parametresi olarak) oluştururuz.
-    public interface IRepository<TEntity>
+    public interface IRepository<TEntity> : IQueryableRepository<TEntity>, IModifiableRepository<TEntity>
     {
-        TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
     }
 }

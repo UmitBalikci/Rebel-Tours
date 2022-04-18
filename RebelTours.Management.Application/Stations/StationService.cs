@@ -16,20 +16,9 @@ namespace RebelTours.Management.Application.Stations
         {
             _stationRepository = stationRepository;
         }
-        public void Create(StationDTO stationDTO)
+        public CommandResult Create(StationDTO stationDTO)
         {
-            var station = new Station()
-            {
-                Id = stationDTO.Id,
-                Name = stationDTO.Name,
-                CityId = stationDTO.CityId
-            };
-            _stationRepository.Create(station);
-        }
-
-        public void Delete(StationDTO stationDTO)
-        {
-            if (stationDTO != null)
+            try
             {
                 var station = new Station()
                 {
@@ -37,8 +26,39 @@ namespace RebelTours.Management.Application.Stations
                     Name = stationDTO.Name,
                     CityId = stationDTO.CityId
                 };
-                _stationRepository.Delete(station);
+                _stationRepository.Create(station);
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
             }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+            
+        }
+
+        public CommandResult Delete(StationDTO stationDTO)
+        {
+            try
+            {
+                if (stationDTO != null)
+                {
+                    var station = new Station()
+                    {
+                        Id = stationDTO.Id,
+                        Name = stationDTO.Name,
+                        CityId = stationDTO.CityId
+                    };
+                    _stationRepository.Delete(station);
+                }
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+            
         }
 
         public IEnumerable<StationDTO> GetAll()
@@ -69,12 +89,22 @@ namespace RebelTours.Management.Application.Stations
             return stationDTO;
         }
 
-        public void Update(StationDTO stationDTO)
+        public CommandResult Update(StationDTO stationDTO)
         {
-            var station = _stationRepository.GetById(stationDTO.Id);
-            station.Name = stationDTO.Name;
-            station.CityId = stationDTO.CityId;
-            _stationRepository.Update(station);
+            try
+            {
+                var station = _stationRepository.GetById(stationDTO.Id);
+                station.Name = stationDTO.Name;
+                station.CityId = stationDTO.CityId;
+                _stationRepository.Update(station);
+
+                return CommandResult.Success("Kaydetme işlemi başarılı");
+            }
+            catch (Exception)
+            {
+                return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
+            }
+            
         }
     }
 }

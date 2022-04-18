@@ -25,10 +25,6 @@
             <div class="mb-3">
                 <label class="form-label" asp-for="Type">Bus Type</label>
                 <select asp-for="Type" class="form-control" asp-items="Html.GetEnumSelectList<BusType>()" required>
-
-                    @*<option value="0">@BusType.None</option>
-                    <option value="1">@BusType.Shuttle</option>
-                    <option value="2">@BusType.Coach</option>*@
                 </select>
             </div>
             <div class="mb-3">

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RebelTours.Management.Application;
 using RebelTours.Management.Application.Cities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace RebelTours.Management.Presentation.Controllers
@@ -43,6 +45,11 @@ namespace RebelTours.Management.Presentation.Controllers
             var result = _cityService.Create(city);
             if (result.IsSucceeded)
             {
+                //ViewBag.CommandResult = result;
+                //TempData["CommanResult"] = result;
+                //TempData["message"] = "bravoo";
+                string data = JsonSerializer.Serialize(result);
+                TempData["message"] = data;
                 return RedirectToAction("Index");
             }
             else

@@ -27,9 +27,9 @@ namespace RebelTours.Management.Application.Cities
                 };
                 _cityRepository.Create(city);
 
-                return CommandResult.Success();
+                return CommandResult.Success("Kaydetme işlemi başarılı");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return CommandResult.Error("Kaydetme sırasında hata meydana geldi");
             }
