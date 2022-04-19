@@ -1,10 +1,21 @@
-﻿
+﻿@if (ViewBag.CommandResult != null)
+{
+    var result = (CommandResult)ViewBag.CommandResult;
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="alert @(result.IsSucceeded ? "alert-success": "alert-danger")">
+                @result.Messages.First()
+            </div>
+        </div>
+
+    </div>
+}
 
 <div class="row">
     <div class="col-12 col-md-8">
         <form method="post">
             <label class="form-label" for="Name">Station Name</label>
-            <input type="text" name="Name" class="form-control mb-3" required />
+            <input type="text" name="Name" class="form-control mb-3"  />
             <label class="form-label" for="CityId">City Name</label>
             @*<input type="number" name="CityId" class="form-control mb-3"/>*@
 
@@ -12,12 +23,12 @@
             {
                 <select asp-items="ViewBag.CityList" class="form-control" name="CityId">
                     @*
-                Manuel olarak aşağıdaki gibi yapabiliriz..
+                        Manuel olarak aşağıdaki gibi yapabiliriz..
                     *@
                     @*@foreach (var city in ViewBag.CityList)
-                {
-                    <option value="@city.Id">@city.Name</option>
-                }*@
+                        {
+                            <option value="@city.Id">@city.Name</option>
+                        }*@
                 </select>
             }
             <br />

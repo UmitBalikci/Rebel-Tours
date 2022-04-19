@@ -1,5 +1,50 @@
 ﻿@model IEnumerable<StationDTO>
 
+@if (TempData["CommandResult"] != null)
+{
+    var resultJson = (string)TempData["CommandResult"];
+    var result = JsonConvert.DeserializeObject<CommandResult>(resultJson);
+
+
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="alert @(result.IsSucceeded ? "alert-success": "alert-danger")">
+                @(result.Messages.Any() ? result.Messages.First() : "Hata")
+            </div>
+        </div>
+
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+
+    // TempData üzerinde taşınan bir anahtar kelime karşılığında verinin ömrü, o anahtar kelimedeki veri okunana
+    // kadardır
+    // Eğer veri hiç okunmazsa TempData üzerindeki veriler muhafaza edilir
+    // Veri en az bir kere okunduğunda o anahtar kelime ve değeri TempData'dan
+    // silinmek üzere işaretlenir ve Response
+    // tamamlandıktan sonra anahtar ve değeri silinir
+    <div class="alert alert-success">
+        @*
+            HTML içerisinde Razor expression yazarak TempData verisini görüntülemek de
+            TempData verisinin okunması anlamına gelir
+            @TempData["SuccessMessage"]
+        *@
+
+        @*
+            Peek(key) => Veriyi okuduktan sonra silinmek üzere işaretlenmesini istemiyorsan bu metot aracılı
+            ile okuyabilirsin
+            Keep(key) => Veriyi normal yöntemle okuduktan sonra saklanmasını istiyorsanız bu metodu çağrabilirsiniz
+            @TempData.Peek("SuccessMessage")
+        *@
+
+
+        @{
+            TempData.Keep("SuccessMessage");
+        }
+    </div>
+}
 <div class="row">
     <div class="col-12 col-md-8">
         <table class="table table-striped">
@@ -21,13 +66,13 @@
                         <td>@station.Name</td>
                         <td>
                             @*@foreach (var city in ViewBag.CityList)
-                            {
-                                if (city.Id == station.CityId)
                                 {
-                                    @city.Name;
-                                }
-                            }*@
-                            @((ViewBag.CityList as IEnumerable<CityDTO>).SingleOrDefault(c => c.Id == station.CityId).Name) 
+                                    if (city.Id == station.CityId)
+                                    {
+                                        @city.Name;
+                                    }
+                                }*@
+                            @((ViewBag.CityList as IEnumerable<CityDTO>).SingleOrDefault(c => c.Id == station.CityId).Name)
                         </td>
                         <td>
                             <a class="btn btn-primary" asp-route-id=@station.Id asp-action="Update">Update</a>

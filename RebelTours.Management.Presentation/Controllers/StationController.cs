@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using RebelTours.Management.Application.Cities;
 using RebelTours.Management.Application.Stations;
 using System;
@@ -41,8 +42,23 @@ namespace RebelTours.Management.Presentation.Controllers
         [HttpPost]
         public IActionResult Create(StationDTO stationDTO)
         {
-            _stationService.Create(stationDTO);
-            return RedirectToAction("Index");
+            var result = _stationService.Create(stationDTO);
+            if (result.IsSucceeded)
+            {
+                // Seralizer => stringleştirme
+                TempData["CommandResult"] = JsonConvert.SerializeObject(result);
+                //TempData.Add("CommandResult", result);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //ViewBag.ErrorMessage = "Hata meydana geldi";
+                var cities = _cityService.GetAll();
+                ViewBag.CityList = new SelectList(cities, "Id", "Name");
+                ViewBag.CommandResult = result;
+                return View();
+            }
+
         }
         [HttpGet]
         public IActionResult Update(int id)
